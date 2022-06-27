@@ -1,2 +1,2 @@
 #!/bin/bash
-shopt -s globstar && find **/*.js -type f -delete && shopt -u globstar
+find . -name "*.js" -type f -delete
