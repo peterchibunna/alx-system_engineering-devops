@@ -1,2 +1,4 @@
 #!/bin/bash
+shopt -s globstar
 find **/*.js -type f -delete
+shopt -u globstar
