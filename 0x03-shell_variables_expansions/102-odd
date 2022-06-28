@@ -1,2 +1,2 @@
 #!/bin/bash
-perl -ne 'not $.%2 && print'
+perl -ne 'print if $.%2'
