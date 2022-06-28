@@ -1,2 +1,2 @@
 #!/bin/bash
-while read; do echo $REPLY; read; done
+perl -ne 'not $.%2 && print'
