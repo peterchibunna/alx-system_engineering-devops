@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# the fizzbuzz loop in shell language: :D haha!
 for i in {1..100}
 	do
 		if [ "$((i%15))" -eq 0 ]; then
