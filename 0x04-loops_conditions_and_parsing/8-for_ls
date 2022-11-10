@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# prints all the filenames in the current directory but starting from after the first dash
 filenames=$(ls ./)
 for eachfile in $filenames
 	do

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash 
-
+# prints the superstitious numbers: bad luck from China, Japan, Italy in the 4th, 9th and 17th iterations respectively
 a=1
 while [ $a -le 20 ];
 do
