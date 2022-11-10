@@ -1,5 +1,5 @@
 #!/usr/bin/env bash 
-
+#script that prints bad luck, good luck, Best School for the 4th, 8th and rest iterations
 a=1
 while [ $a -le 10 ];
 do
