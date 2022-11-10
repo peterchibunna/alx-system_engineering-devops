@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+filenames=$(ls ./)
+for eachfile in $filenames
+	do
+		echo "$eachfile" | cut -d"-" -f2
+done
