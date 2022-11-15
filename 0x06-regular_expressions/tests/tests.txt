@@ -1,0 +1,69 @@
+============================== 3 ======================================
+~/D/a/0x06-regular_expressions ❯❯❯ ./3-repetition_token_2.rb hbn | cat -e                                           main ◼
+$
+~/D/a/0x06-regular_expressions ❯❯❯ ./3-repetition_token_2.rb hbtn | cat -e                                          main ◼
+hbtn$
+~/D/a/0x06-regular_expressions ❯❯❯ ./3-repetition_token_2.rb hbttn | cat -e                                         main ◼
+hbttn$
+~/D/a/0x06-regular_expressions ❯❯❯ ./3-repetition_token_2.rb hbtttn | cat -e                                        main ◼
+hbtttn$
+~/D/a/0x06-regular_expressions ❯❯❯ ./3-repetition_token_2.rb hbttttn | cat -e                                       main ◼
+hbttttn$
+
+============================= 4 ========================================
+~/D/a/0x06-regular_expressions ❯❯❯ ./4-repetition_token_3.rb hbn | cat -e                                           main ◼
+hbn$
+~/D/a/0x06-regular_expressions ❯❯❯ ./4-repetition_token_3.rb hbon | cat -e                                          main ◼
+$
+~/D/a/0x06-regular_expressions ❯❯❯ ./4-repetition_token_3.rb hbtn | cat -e                                          main ◼
+hbtn$
+~/D/a/0x06-regular_expressions ❯❯❯ ./4-repetition_token_3.rb hbttn | cat -e                                         main ◼
+hbttn$
+~/D/a/0x06-regular_expressions ❯❯❯ ./4-repetition_token_3.rb hbtttn | cat -e                                        main ◼
+hbtttn$
+~/D/a/0x06-regular_expressions ❯❯❯ ./4-repetition_token_3.rb hbttttn | cat -e                                       main ◼
+hbttttn$
+
+============================ 5 =====================================
+~/D/a/0x06-regular_expressions ❯❯❯ ./5-beginning_and_end.rb 'hn' | cat -e                                           main ◼
+$
+~/D/a/0x06-regular_expressions ❯❯❯ ./5-beginning_and_end.rb 'hbn' | cat -e                                          main ◼
+hbn$
+~/D/a/0x06-regular_expressions ❯❯❯ ./5-beginning_and_end.rb 'hbtn' | cat -e                                         main ◼
+$
+~/D/a/0x06-regular_expressions ❯❯❯ ./5-beginning_and_end.rb 'hbtn' | cat -e                                         main ◼
+$
+~/D/a/0x06-regular_expressions ❯❯❯ ./5-beginning_and_end.rb 'h8n' | cat -e                                          main ◼
+h8n$
+~/D/a/0x06-regular_expressions ❯❯❯ ./5-beginning_and_end.rb 'ih8ni' | cat -e                                        main ◼
+$
+
+==================== 6 ==================================
+~/D/a/0x06-regular_expressions ❯❯❯ ./6-phone_number.rb 4155049898 | cat -e                                          main ◼
+4155049898$
+~/D/a/0x06-regular_expressions ❯❯❯ ./6-phone_number.rb " 4155049898" | cat -e                                       main ◼
+$
+~/D/a/0x06-regular_expressions ❯❯❯ ./6-phone_number.rb "415 504 9898" | cat -e                                      main ◼
+$
+~/D/a/0x06-regular_expressions ❯❯❯ ./6-phone_number.rb "415-504-9898" | cat -e                                      main ◼
+$
+~/D/a/0x06-regular_expressions ❯❯❯ ./6-phone_number.rb 123456789 | cat -e                                           main ◼
+$
+
+========================= 7 ================================
+~/D/a/0x06-regular_expressions ❯❯❯ ./7-OMG_WHY_ARE_YOU_SHOUTING.rb "I realLy hOpe VancouvEr posseSs Yummy Soft vAnilla Dupper Mint Ice Nutella cream" | cat -e
+ILOVESYSADMIN$
+~/D/a/0x06-regular_expressions ❯❯❯ ./7-OMG_WHY_ARE_YOU_SHOUTING.rb "WHAT do you SAY?" | cat -e                      main ◼
+WHATSAY$
+~/D/a/0x06-regular_expressions ❯❯❯ ./7-OMG_WHY_ARE_YOU_SHOUTING.rb "cannot read you" | cat -e                       main ◼
+$
+
+=========================== 100 ===============================
+~/D/a/0x06-regular_expressions ❯❯❯ ./100-textme.rb 'Feb 1 11:00:00 ip-10-0-0-11 mdr: 2016-02-01 11:00:00 Receive SMS [SMSC:SYBASE1] [SVC:] [ACT:] [BINF:] [FID:] [from:Google] [to:+16474951758] [flags:-1:0:-1:0:-1] [msg:127:This planet has - or rather had - a problem, which was this: most of the people on it were unhappy for pretty much of the time.] [udh:0:]'
+>>> Google,+16474951758,-1:0:-1:0:-1
+~/D/a/0x06-regular_expressions ❯❯❯ ./100-textme.rb 'Feb 1 11:00:00 ip-10-0-64-10 mdr: 2016-02-01 11:00:00 Receive SMS [SMSC:SYBASE2] [SVC:] [ACT:] [BINF:] [FID:] [from:+17272713208] [to:+19172319348] [flags:-1:0:-1:0:-1] [msg:136:Orbiting this at a distance of roughly ninety-two million miles is an utterly insignificant little blue green planet whose ape-descended] [udh:0:]'
+>>> +17272713208,+19172319348,-1:0:-1:0:-1
+~/D/a/0x06-regular_expressions ❯❯❯ ./100-textme.rb 'Feb 1 11:00:00 ip-10-0-64-11 mdr: 2016-02-01 11:00:00 Sent SMS [SMSC:SYBASE1] [SVC:backendtextme] [ACT:] [BINF:] [FID:] [from:18572406905] [to:14022180266] [flags:-1:0:-1:-1:-1] [msg:136:Far out in the uncharted backwaters of the unfashionable end of the western spiral arm of the Galaxy lies a small unregarded yellow sun.] [udh:0:]'
+>>> 18572406905,14022180266,-1:0:-1:-1:-1
+~/D/a/0x06-regular_expressions ❯❯❯ ./100-textme.rb 'Feb 1 11:00:00 ip-10-0-64-11 mdr: 2016-02-01 11:00:00 Sent SMS [SMSC:SYBASE1] [SVC:backendtextme] [ACT:] [BINF:] [FID:] [from:12392190384] [to:19148265919] [flags:-1:0:-1:-1:-1] [msg:99:life forms are so amazingly primitive that they still think digital watches are a pretty neat idea.] [udh:0:]'
+>>> 12392190384,19148265919,-1:0:-1:-1:-1
