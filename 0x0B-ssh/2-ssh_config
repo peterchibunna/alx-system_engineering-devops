@@ -1,0 +1,4 @@
+# ssh config file
+Host 3.90.80.107
+      PasswordAuthentication no
+      IdentifyFile ~/.ssh/school
