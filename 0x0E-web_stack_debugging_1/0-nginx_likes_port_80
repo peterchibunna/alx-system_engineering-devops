@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 # 0. Nginx likes port 80
-rm -r /etc/nginx/
-apt --reinstall install nginx
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 service nginx restart
