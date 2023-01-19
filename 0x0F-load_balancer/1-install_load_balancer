@@ -17,14 +17,10 @@ frontend haproxy-main
 backend apa
 che_webservers
     balance roundrobin
-    server 94238-web-01 3.90.80.107:80 check
-    server 94238-web-02 52.91.115.216:80 check
+    server 94238-web-01 3.90.80.107:80
+    server 94238-web-02 52.91.115.216:80
 "
 FILE=/etc/haproxy/haproxy.cfg
-#if sed -e '/frontend/,/check/!d' "$FILE" != "$LINE"; then
-#  printf "%s" "$LINE" >> "$FILE"
-#fi
 
-#awk "$LINE" "$FILE" || printf "%s" "$LINE" >> "$FILE"
 printf "%s" "$LINE" >> "$FILE"
 service haproxy restart
