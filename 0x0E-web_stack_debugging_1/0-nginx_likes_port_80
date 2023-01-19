@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# 0. Nginx likes port 80
+
+apt-get remove nginx --purge
+rm -r /etc/nginx/
+sudo apt-get install nginx
+service nginx restart
