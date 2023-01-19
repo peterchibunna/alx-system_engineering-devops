@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # Installs HAProxy version 2.4 with the following configurations:
 
-#apt-get install -y software-properties-common
-#add-apt-repository -y ppa:vbernat/haproxy-2.4
-#apt-get update
-#apt-get install -y haproxy
+apt-get install -y software-properties-common
+add-apt-repository -y ppa:vbernat/haproxy-2.4
+apt-get update
+apt-get install -y haproxy
 
 cp -a /etc/haproxy/haproxy.cfg{,.orig}
 
