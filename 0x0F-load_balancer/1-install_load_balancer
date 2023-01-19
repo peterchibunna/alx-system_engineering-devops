@@ -1,26 +1,60 @@
 #!/usr/bin/env bash
-# Installs HAProxy version 2.4 with the following configurations:
+# Configure HAproxy so that it send traffic to web-01 and web-02
 
-apt-get install -y software-properties-common
-add-apt-repository -y ppa:vbernat/haproxy-2.4
-apt-get update
-apt-get install -y haproxy
+sudo apt update
+sudo apt-get install --no-install-recommends software-properties-common -y
+sudo add-apt-repository ppa:vbernat/haproxy-2.4 -y
+sudo apt-get install haproxy -y
 
-cp -a /etc/haproxy/haproxy.cfg{,.orig}
+HAPROXY_INIT='/etc/default/haproxy'
+HAPROXY_CONFIG='/etc/haproxy/haproxy.cfg'
+DOMAIN_NAME='peterchibunna.tech'
+HAPROXY_CFG_TEMPLATE="
+#--$DOMAIN_NAME-configuration-begins--
 
-LINE="
-frontend haproxy-main
-    bind *:80
-    option forwardfor
-    default_backend apache_webservers
+frontend "$DOMAIN_NAME"-frontend
+	bind 0.0.0.0:80
+	default_backend "$DOMAIN_NAME"-backend
 
-backend apa
-che_webservers
-    balance roundrobin
-    server 94238-web-01 3.90.80.107:80
-    server 94238-web-02 52.91.115.216:80
+backend "$DOMAIN_NAME"-backend
+	balance roundrobin
+	server 94238-web-01 3.90.80.107:80  check
+	server 94238-web-02 52.91.115.216:80  check
+
+#--$DOMAIN_NAME-configuration-ends--
 "
-FILE=/etc/haproxy/haproxy.cfg
 
-printf "%s" "$LINE" >> "$FILE"
-service haproxy restart
+# check if the files exist & create backups, else create them
+[ -f "$HAPROXY_INIT" ] && cp "$HAPROXY_INIT" "$HAPROXY_INIT".bak || touch "$HAPROXY_INIT"
+[ -f "$HAPROXY_CONFIG" ] && cp "$HAPROXY_CONFIG" "$HAPROXY_CONFIG".bak || touch "$HAPROXY_CONFIG"
+
+# Initialise a checker to know if our configurations exist
+# simply put, the code counts the number of times our backend is configured
+CHECKER=$(grep -Eco "$DOMAIN_NAME-backend" <$HAPROXY_CONFIG)
+
+# if a line containing "ENABLED=0/1" exists in init file and
+if [ "$(grep -Eco '*ENABLED=[01]$' <$HAPROXY_INIT)" -gt 0 ]; then
+	# replace all *ENABLED=.
+	sed -i 's/#*ENABLED=.$/ENABLED=1/g' "$HAPROXY_INIT"
+else
+	echo 'ENABLED=1' >>$HAPROXY_INIT
+fi
+
+if [ "$CHECKER" -eq 0 ]; then
+	echo -en "$HAPROXY_CFG_TEMPLATE" >>$HAPROXY_CONFIG
+else
+	start_tkn="#--$DOMAIN_NAME-configuration-begins--"
+	end_tkn="#--$DOMAIN_NAME-configuration-ends--"
+	# get the line number where it starts and ends
+	a=$(grep -onE "$start_tkn" <"$HAPROXY_CONFIG" | cut -d : -f1)
+	b=$(grep -onE "$end_tkn" <"$HAPROXY_CONFIG" | cut -d : -f1)
+	# create a boundary
+	start_line=$((a - 1))
+	end_line=$((b + 1))
+	# Delete the lines inbetween the boundary
+	sed -i "$start_line,$end_line"d "$HAPROXY_CONFIG"
+	# append the config again
+	echo -en "$HAPROXY_CFG_TEMPLATE" >>$HAPROXY_CONFIG
+fi
+
+sudo service haproxy restart
