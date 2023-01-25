@@ -13,34 +13,22 @@ defaults
     timeout connect  5000
     timeout client  10000
     timeout server  10000
-listen hbnb
-    bind 0.0.0.0:443
-    mode http
-    stats enable
-    stats uri /haproxy?stats
-    balance roundrobin
-    option httpclose
-    option forwardfor
-    server 94238-web-01 3.90.80.107:80 check
-    server 94238-web-02 52.91.115.216:80 check
-    option  forwardfor
-    option  http-server-close
 
 frontend www-http
-    bind   100.26.162.156:80
+    bind   *:80
     reqadd X-Forwarded-Proto:\ http
     default_backend www-backend
 
 frontend www-https
-    bind   100.26.162.156:443 ssl crt /etc/letsencrypt/live/www.peterchibunna.tech/fullchain.pem
+    bind   *:443 ssl crt /etc/letsencrypt/live/www.peterchibunna.tech/fullchain.pem
     reqadd X-Forwarded-Proto:\ https
-    use_backend letsencrypt-backend if letsencrypt-acl
     default_backend www-backend
 
 backend www-backend
+   balance roundrobin
    redirect scheme https if !{ ssl_fc }
-   server web-01 3.90.80.107:80 check
-   server web-02 52.91.115.216:80 check
+   server 94238-web-01 3.90.80.107:80 check
+   server 94238-web-02 52.91.115.216:80 check
 
 backend letsencrypt-backend
    server letsencrypt 127.0.0.1:54321
