@@ -36,7 +36,7 @@ frontend www-https
     bind   100.26.162.156:443 ssl crt /etc/letsencrypt/live/www.peterchibunna.tech/fullchain.pem
     http-request set-header X-Forwarded-Proto https
     # acl letsencrypt-acl path_beg /.well-known/acme-challenge/
-    use_backend letsencrypt-backend if letsencrypt-acl
+    # use_backend letsencrypt-backend if letsencrypt-acl
     default_backend www-backend
 
 backend www-backend
