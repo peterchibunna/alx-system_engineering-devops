@@ -1,7 +1,7 @@
 # 0x13-firewall
 
 
-1. Uncomment forwarding line in /etc/ufw/sysctl.conf
+1. Uncomment forwarding lines in `/etc/ufw/sysctl.conf`
 2. Update `/etc/default/ufw` set the line: `DEFAULT_FORWARD_POLICY="ACCEPT"`
 3. Added the following lines to `/etc/ufw/before.rules` (before the `*filter` section):
 ```
