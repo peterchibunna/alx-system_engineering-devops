@@ -1,7 +1,7 @@
 # Configure ufw to accept only connections from the following ports:
 # 22 (ssh), 443 (https)
 
-apt-get install ufw
+apt-get install ufw -y
 sed -i 's/IPV6=.*/IPV6=yes/' /etc/default/ufw
 ufw enable
 ufw default deny incoming
