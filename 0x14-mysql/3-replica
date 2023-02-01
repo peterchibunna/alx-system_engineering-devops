@@ -1,0 +1,3 @@
+CREATE USER 'replica_user'@'%' IDENTIFIED WITH mysql_native_password BY 'hjsdkfhskdjfsdf';
+GRANT ALL PRIVILEGES ON *.* TO 'replica_user'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
