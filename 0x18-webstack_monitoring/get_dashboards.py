@@ -15,5 +15,4 @@ with ApiClient(configuration) as api_client:
 
     print(response)
 
-# DD_SITE="us5.datadoghq.com" DD_API_KEY=""
-# DD_APP_KEY="" python3 get_dashboards.py
+# DD_SITE="datadoghq.com" DD_API_KEY="" DD_APP_KEY="" python3 get_dashboards.py
